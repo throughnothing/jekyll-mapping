@@ -29,10 +29,25 @@ module Jekyll
             if context['page']['mapping']
                 latitude = context['page']['mapping']['latitude']
                 longitude = context['page']['mapping']['longitude']
+                layers = context['page']['mapping']['layers']
+                locations = context['page']['mapping']['locations']
+                if layers
+                    layers = layers.map { |i| i.to_s }.join(" ")
+                end
+                if locations
+                    locations = locations.map { |i| i.to_s }.join(" ")
+                end
+
                 if @engine == 'google_static'
                     return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{latitude},#{longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
-                elsif @engine == 'google_js' || 'openstreetmap'
-                    return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
+                elsif (@engine == 'google_js') || (@engine == 'openstreetmap')
+                    return "<div class=\"jekyll-mapping\"
+                        data-latitude=\"#{latitude}\"
+                        data-longitude=\"#{longitude}\"
+                        data-layers=\"#{layers}\"
+                        data-locations=\"#{locations}\"
+                        data-title=\"#{context['page']['title']}\"
+                        style=\"height:#{@height}px;width:#{@width}px;\"></div>"
                 end
             end
         end
