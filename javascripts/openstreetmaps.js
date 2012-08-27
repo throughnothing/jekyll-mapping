@@ -18,7 +18,7 @@ var jekyllMapping = (function () {
                 map.addLayer(new OpenLayers.Layer.OSM());
                 map.addLayer(markers);
                 if (lat && lon) {
-                    center = new OpenLayers.LonLat(long, lat).transform(
+                    center = new OpenLayers.LonLat(lon, lat).transform(
                         new OpenLayers.Projection("EPSG:4326"),
                         new OpenLayers.Projection("EPSG:900913"));
                     map.setCenter(center, zoom);
