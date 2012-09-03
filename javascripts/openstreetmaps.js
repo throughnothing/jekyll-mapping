@@ -51,15 +51,7 @@ var jekyllMapping = (function () {
                 })
               })
             });
-            if (m) {
-              m.events.register("loadend", m, function () {
-                var bounds = m.getDataExtent();
-                if (bounds) {
-                  map.zoomToExtent(bounds);
-                }
-              });
-              map.addLayer(m)
-            }
+            map.addLayer(m)
           }
         }
       }
