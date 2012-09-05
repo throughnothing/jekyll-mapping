@@ -31,6 +31,7 @@ module Jekyll
                 longitude = context['page']['mapping']['longitude']
                 layers = context['page']['mapping']['layers']
                 locations = context['page']['mapping']['locations']
+                colors = context['page']['mapping']['layercolors']
                 if layers
                     layers = layers.map { |i| i.to_s }.join(" ")
                 end
@@ -45,6 +46,7 @@ module Jekyll
                         data-latitude=\"#{latitude}\"
                         data-longitude=\"#{longitude}\"
                         data-layers=\"#{layers}\"
+                        data-colors=\"#{colors}\"
                         data-locations=\"#{locations}\"
                         data-title=\"#{context['page']['title']}\"
                         style=\"height:#{@height}px;width:#{@width}px;\"></div>"

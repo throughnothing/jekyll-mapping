@@ -12,6 +12,7 @@ var jekyllMapping = (function () {
                     lat       = maps[i].getAttribute("data-latitude"),
                     lon       = maps[i].getAttribute("data-longitude"),
                     layers    = maps[i].getAttribute("data-layers"),
+                    colors    = maps[i].getAttribute("data-colors"),
                     title     = maps[i].getAttribute("data-title"),
                     map, markers, center;
 
@@ -47,14 +48,28 @@ var jekyllMapping = (function () {
                 //}
 
                 if (layers) {
+                    layerColors = colors.split(' ');
                     layers = layers.split(' ');
                     while (layers.length > 0){
+                        var layerColor;
+                        var extractStyles = true;
+                        if (layerColors && layerColors.length > 0) {
+                          layerColor = layerColors.pop();
+                        }
+                        var style = OpenLayers.Util.extend({}, OpenLayers.Feature.Vector.style['default']);
+                        if (layerColor) {
+                            style.strokeColor = "#" + layerColor;
+                            style.strokeWidth = 4; 
+                            style.strokeOpacity = 1;
+                            extractStyles = false;
+                        }
                         lastLayer = new OpenLayers.Layer.Vector("KML", {
+                                style: style,
                                 strategies: [new OpenLayers.Strategy.Fixed()],
                                 protocol: new OpenLayers.Protocol.HTTP({
                                     url: layers.pop(),
                                     format: new OpenLayers.Format.KML({
-                                        extractStyles: true,
+                                        extractStyles: extractStyles,
                                         extractAttributes: true,
                                         maxDepth: 2
                                     })

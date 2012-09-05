@@ -102,6 +102,14 @@ If you'd like to use KML, you can do that too. Just add 'layers' in a similar fa
             - http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss
             - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
 
+Optional you can override the track colors (only for openstreetmap):
+
+    mapping:
+        layercolors: 0000CD FFA500
+        layers:
+            - http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss
+            - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
+
 Right now, multiple locations works for both google_js and openstreetmap. KML definitely works for google_js and should work for openstreetmap, but needs more testing.
 
 ## Future things to do
