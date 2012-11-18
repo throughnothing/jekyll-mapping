@@ -9,7 +9,7 @@ var jekyllMapping = (function () {
                     layers    = maps[i].getAttribute("data-layers"),
                     title     = maps[i].getAttribute("data-title"),
                     options   = {
-                    zoom: zoom,
+                    zoom: parseFloat(zoom),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                     }, mainMarker;
 
