@@ -31,6 +31,7 @@ module Jekyll
                 longitude = context['page']['mapping']['longitude']
                 layers = context['page']['mapping']['layers']
                 locations = context['page']['mapping']['locations']
+                zoom = context['page']['mapping'].has_key?('zoom') ? context['page']['mapping']['zoom'] : @zoom
                 if layers
                     layers = layers.map { |i| i.to_s }.join(" ")
                 end
@@ -47,6 +48,7 @@ module Jekyll
                         data-layers=\"#{layers}\"
                         data-locations=\"#{locations}\"
                         data-title=\"#{context['page']['title']}\"
+                        data-zoom=\"#{zoom}\"
                         style=\"height:#{@height}px;width:#{@width}px;\"></div>"
                 end
             end
